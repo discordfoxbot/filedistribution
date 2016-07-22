@@ -1,0 +1,13 @@
+{
+  "name": "foxbot-filedistribution",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.14.0",
+    "fs": "0.0.2",
+    "mime-types": "^2.1.11",
+    "multer": "^1.1.0",
+    "path": "^0.12.7",
+    "shortid": "^2.2.6",
+    "underscore": "^1.8.3"
+  }
+}
