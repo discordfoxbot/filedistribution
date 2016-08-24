@@ -39,14 +39,14 @@ app.post('/upload', upload.single('data'), function (req, res) {
         var name = shortid.generate();
         var type = mime.extension(req.file.mimetype);
         if (type === false) {
-            var split = originalname.trim().split('.');
+            var split = req.file.originalname.trim().split('.');
             type = split[split.length - 1];
         }
         fs.readFile(req.file.path, function (err, file) {
             if (!err) {
                 fs.writeFile(__dirname + '/public/' + name + '.' + type, file, function (err) {
                     if (!err) {
-                        res.status(201).json({loc: config.urls.cdn + name + '.' + type});
+                        res.status(201).json({loc: config.urls.cdn + '/' + name + '.' + type});
                     } else {
                         console.log(err, 2);
                         res.status(500).send('Internal upload error.');
