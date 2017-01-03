@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
-var _ = require('underscore');
 var multer = require('multer');
 var shortid = require('shortid');
 var mime = require('mime-types');
@@ -49,16 +48,16 @@ app.post('/upload', upload.single('data'), function (req, res) {
                         res.status(201).json({loc: config.urls.cdn + '/' + name + '.' + type});
                     } else {
                         console.log(err, 2);
-                        res.status(500).send('Internal upload error.');
+                        res.status(500).json({msg: 'Internal upload error.'});
                     }
                 });
             } else {
                 console.log(err, 1);
-                res.status(500).send('Internal upload error.');
+                res.status(500).json({msg: 'Internal upload error.'});
             }
         });
     } else {
-        res.status(401).send('Unauthorized! Send authorization header!');
+        res.status(401).json({msg: 'Unauthorized! Send authorization header!'});
     }
 });
 
